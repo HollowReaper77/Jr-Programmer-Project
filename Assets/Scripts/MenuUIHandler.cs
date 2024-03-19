@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -27,10 +28,11 @@ public class MenuUIHandler : MonoBehaviour
         //this will call the NewColorSelected function when the color picker have a color button clicked.
         if (MainManager.Instance != null)
         {
-            //SetColor(MainManager.Instance.TeamColor);
+            SetColor(MainManager.Instance.TeamColor);
         }
         ColorPicker.onColorChanged += NewColorSelected;
-        ColorPicker.SelectColor(MainManager.Instance.TeamColor);
+        //ColorPicker.SelectColor(MainManager.Instance.TeamColor);
+
     }
 
     public void StartNew()
@@ -38,16 +40,14 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-
-
     public void Exit()
     {
         MainManager.Instance.SaveColor();
-        #if UNITY_EDITOR
-                EditorApplication.ExitPlaymode();
-        #else
-                Application.Quit(); // original code to quit Unity player
-        #endif
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit(); // original code to quit Unity player
+#endif
 
     }
 

@@ -12,7 +12,13 @@ public class ColorPicker : MonoBehaviour
     public System.Action<Color> onColorChanged;
 
     List<Button> m_ColorButtons = new List<Button>();
-    
+
+    [System.Serializable]
+    class SaveData
+    {
+        public Color TeamColor;
+    }
+
     // Start is called before the first frame update
     public void Init()
     {

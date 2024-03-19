@@ -11,6 +11,20 @@ public class MainManager : MonoBehaviour
 
     public Color TeamColor; // new variable declared
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        LoadColor();
+    }
+
     [System.Serializable]
     class SaveData
     {
@@ -38,20 +52,5 @@ public class MainManager : MonoBehaviour
             TeamColor = data.TeamColor;
         }
     }
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        LoadColor();
-    }
-
 
 }
