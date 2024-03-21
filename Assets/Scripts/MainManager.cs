@@ -5,17 +5,22 @@ using System.IO;
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager Instance;
+    // Start() and Update() methods deleted - we don't need them right now
 
-    public Color TeamColor;
+    public static MainManager Instance { get; private set; } // add getter to the end of the line
+
+    public Color TeamColor; // new variable declared
 
     private void Awake()
     {
-        if(Instance != null)
+        // start of new code
+
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
+        // end of new code
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
